@@ -1,0 +1,1 @@
+/usr/bin/c++    -Wall -Werror -std=c++14 -lpaho-mqttpp3 -lpaho-mqtt3as -g   CMakeFiles/vrecog.dir/src/Main.cpp.o  -o vrecog 

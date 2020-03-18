@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pedroalves/Midiacom/cpp/vrecog/src/Main.cpp
+iostream
+-
+cstdlib
+-
+string
+-
+cstring
+-
+cctype
+-
+thread
+-
+chrono
+-
+mqtt/async_client.h
+/home/pedroalves/Midiacom/cpp/vrecog/src/mqtt/async_client.h
+
