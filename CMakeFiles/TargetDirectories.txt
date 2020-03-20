@@ -1,3 +1,0 @@
-/home/pedroalves/Midiacom/cpp/vrecog/CMakeFiles/edit_cache.dir
-/home/pedroalves/Midiacom/cpp/vrecog/CMakeFiles/rebuild_cache.dir
-/home/pedroalves/Midiacom/cpp/vrecog/CMakeFiles/vrecog.dir

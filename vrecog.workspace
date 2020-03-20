@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<CodeLite_Workspace Name="vrecog" Version="10.0.0">
-  <Project Name="vrecog" Path="vrecog.project" Active="Yes"/>
-  <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
-      <Project Name="vrecog" ConfigName="Debug"/>
-    </WorkspaceConfiguration>
-  </BuildMatrix>
-</CodeLite_Workspace>
