@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 #include <string>
 #include <cstring>
@@ -6,19 +7,31 @@
 #include <thread>
 #include <chrono>
 #include "mqtt/async_client.h"
+#include "json.hpp"
 
 using namespace std;
+using json = nlohmann::json;
 
 const string SERVER_ADDRESS	{ "tcp://broker.mqttdashboard.com:1883" };
-const string CLIENT_ID		{ "async_consume" };
+const string CLIENT_ID		{ "listener-cpp" };
 const string TOPIC 			{ "topic/voice_recog" };
 
 const int  QOS = 1;
 
 /////////////////////////////////////////////////////////////////////////////
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]){
+
+	json cmdList = {
+		{"command1", "Executar comando 1"},
+		{"comando 2", "Executar comando 2"},
+		{"play", "Iniciando"},
+		{"pause", "Pausando"},
+		{"desligar", "Desligando..."},
+		{"test", "Executar teste"}
+	};
+	cout << std::setw(4) << cmdList << '\n';
+
 	mqtt::connect_options connOpts;
 	connOpts.set_keep_alive_interval(20);
 	connOpts.set_clean_session(true);
@@ -26,18 +39,20 @@ int main(int argc, char* argv[])
 	mqtt::async_client cli(SERVER_ADDRESS, CLIENT_ID);
 
 	try {
-		cout << "Connecting to the MQTT server..." << flush;
+		cout << "Connected as '" << CLIENT_ID << "' to '" << SERVER_ADDRESS << "'" << endl;
 		cli.connect(connOpts)->wait();
 		cli.start_consuming();
 		cli.subscribe(TOPIC, QOS)->wait();
-		cout << "OK" << endl;
 
 		// Consume messages
 
 		while (true) {
 			auto msg = cli.consume_message();
 			if (!msg) break;
-			cout << msg->get_topic() << ": " << msg->to_string() << endl;
+			if (!cmdList[msg->to_string()].empty())
+			   cout << cmdList[msg->to_string()] << endl;
+			else
+			   cout << "\"" << msg->to_string() << "\" (invalid command) was received from '" << msg->get_topic() << "'" << endl;
 		}
 
 		// Disconnect
