@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include <cstdlib>
 #include <string>
 #include <cstring>
@@ -21,16 +22,10 @@ const int  QOS = 1;
 /////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char* argv[]){
-
-	json cmdList = {
-		{"command1", "Executar comando 1"},
-		{"comando 2", "Executar comando 2"},
-		{"play", "Iniciando"},
-		{"pause", "Pausando"},
-		{"desligar", "Desligando..."},
-		{"test", "Executar teste"}
-	};
-	cout << std::setw(4) << cmdList << '\n';
+	
+	std::ifstream i(argv[1]);
+   json j = json::parse(i);
+   cout << std::setw(4) << j << '\n';
 
 	mqtt::connect_options connOpts;
 	connOpts.set_keep_alive_interval(20);
