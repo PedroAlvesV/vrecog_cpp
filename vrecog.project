@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CodeLite_Project Name="vrecog" InternalType="">
 	<VirtualDirectory Name="src">
-		<File Name="src/Main.cpp"/>
+		<File Name="src/main.cpp"/>
+		<File Name="src/voiceRecognition.cpp"/>
 	</VirtualDirectory>
-	<VirtualDirectory Name="include"/>
+	<VirtualDirectory Name="include">
+		<File Name="src/voiceRecognition.hpp"/>
+	</VirtualDirectory>
 	<Settings Type="Executable">
 		<Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
 			<Compiler Options="-g" Required="yes" PreCompiledHeader="">

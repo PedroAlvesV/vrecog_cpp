@@ -123,32 +123,59 @@ vrecog/fast:
 	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/build
 .PHONY : vrecog/fast
 
-src/Main.o: src/Main.cpp.o
+src/main.o: src/main.cpp.o
 
-.PHONY : src/Main.o
+.PHONY : src/main.o
 
 # target to build an object file
-src/Main.cpp.o:
-	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/Main.cpp.o
-.PHONY : src/Main.cpp.o
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-src/Main.i: src/Main.cpp.i
+src/main.i: src/main.cpp.i
 
-.PHONY : src/Main.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-src/Main.cpp.i:
-	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/Main.cpp.i
-.PHONY : src/Main.cpp.i
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-src/Main.s: src/Main.cpp.s
+src/main.s: src/main.cpp.s
 
-.PHONY : src/Main.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-src/Main.cpp.s:
-	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/Main.cpp.s
-.PHONY : src/Main.cpp.s
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/voiceRecognition.o: src/voiceRecognition.cpp.o
+
+.PHONY : src/voiceRecognition.o
+
+# target to build an object file
+src/voiceRecognition.cpp.o:
+	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/voiceRecognition.cpp.o
+.PHONY : src/voiceRecognition.cpp.o
+
+src/voiceRecognition.i: src/voiceRecognition.cpp.i
+
+.PHONY : src/voiceRecognition.i
+
+# target to preprocess a source file
+src/voiceRecognition.cpp.i:
+	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/voiceRecognition.cpp.i
+.PHONY : src/voiceRecognition.cpp.i
+
+src/voiceRecognition.s: src/voiceRecognition.cpp.s
+
+.PHONY : src/voiceRecognition.s
+
+# target to generate assembly for a file
+src/voiceRecognition.cpp.s:
+	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/voiceRecognition.cpp.s
+.PHONY : src/voiceRecognition.cpp.s
 
 # Help Target
 help:
@@ -159,9 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... vrecog"
-	@echo "... src/Main.o"
-	@echo "... src/Main.i"
-	@echo "... src/Main.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/voiceRecognition.o"
+	@echo "... src/voiceRecognition.i"
+	@echo "... src/voiceRecognition.s"
 .PHONY : help
 
 
