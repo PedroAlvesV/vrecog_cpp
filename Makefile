@@ -150,6 +150,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/userKeyElement.o: src/userKeyElement.cpp.o
+
+.PHONY : src/userKeyElement.o
+
+# target to build an object file
+src/userKeyElement.cpp.o:
+	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/userKeyElement.cpp.o
+.PHONY : src/userKeyElement.cpp.o
+
+src/userKeyElement.i: src/userKeyElement.cpp.i
+
+.PHONY : src/userKeyElement.i
+
+# target to preprocess a source file
+src/userKeyElement.cpp.i:
+	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/userKeyElement.cpp.i
+.PHONY : src/userKeyElement.cpp.i
+
+src/userKeyElement.s: src/userKeyElement.cpp.s
+
+.PHONY : src/userKeyElement.s
+
+# target to generate assembly for a file
+src/userKeyElement.cpp.s:
+	$(MAKE) -f CMakeFiles/vrecog.dir/build.make CMakeFiles/vrecog.dir/src/userKeyElement.cpp.s
+.PHONY : src/userKeyElement.cpp.s
+
 src/voiceRecognition.o: src/voiceRecognition.cpp.o
 
 .PHONY : src/voiceRecognition.o
@@ -189,6 +216,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/userKeyElement.o"
+	@echo "... src/userKeyElement.i"
+	@echo "... src/userKeyElement.s"
 	@echo "... src/voiceRecognition.o"
 	@echo "... src/voiceRecognition.i"
 	@echo "... src/voiceRecognition.s"

@@ -1,11 +1,11 @@
 #include <iostream>
-#include <iomanip>
-#include <fstream>
+#include <iomanip> // setw only
+#include <atomic>
+#include <list>
 #include "mqtt/async_client.h"
 #include "json.hpp"
 #include "voiceRecognition.hpp"
-
-#include <atomic>
+#include "userKeyElement.hpp"
 
 using namespace std;
 using json = nlohmann::json;
@@ -52,6 +52,7 @@ namespace voiceRecognition
                      if (cmd.compare(command) == 0) {
                         cout << "User '" << user << "' ";
                         cout << "invoked command '" << cmd << "'" << endl;
+                        //notifyInteraction("voiceRecognition", user, cmd);
                      }
                   }
                }
@@ -65,17 +66,20 @@ namespace voiceRecognition
       
    }
 
-   void setUserKeyList(){//(list <user, key>){
-      cout << "setUserKeyList()" << endl;
+   void setUserKeyList(list<userKeyElement> userKeyList){
+      //cout << "setUserKeyList()" << endl;
       keyList["userKeyList"] = {{}};
-      keyList["userKeyList"][0] = {
-         {"user", "marina"},
-         {"key", {"stop", "start"}}
-      };
-      keyList["userKeyList"][1] = {
-         {"user", "fabio"},
-         {"key", {"stop"}}
-      };
+      int i = 0;
+      for (auto item : userKeyList) {
+         keyList["userKeyList"][i] = {
+            {"user", item.user},
+            {"key", {}}
+         };
+         for(int j=0; j<item.total_keys; j++){
+            keyList["userKeyList"][i]["key"].push_back(item.key[j]);
+         }
+         i++;
+      }
       cout << std::setw(4) << keyList << '\n';
    }
 

@@ -2,9 +2,11 @@
 <CodeLite_Project Name="vrecog" InternalType="">
 	<VirtualDirectory Name="src">
 		<File Name="src/main.cpp"/>
+		<File Name="src/userKeyElement.cpp"/>
 		<File Name="src/voiceRecognition.cpp"/>
 	</VirtualDirectory>
 	<VirtualDirectory Name="include">
+		<File Name="src/userKeyElement.hpp"/>
 		<File Name="src/voiceRecognition.hpp"/>
 	</VirtualDirectory>
 	<Settings Type="Executable">
