@@ -1,7 +1,6 @@
 #include <iostream>
 #include <iomanip> // for setw only
 #include <future>
-#include <list>
 
 #include "json.hpp"
 #include "voiceRecognition.hpp"
