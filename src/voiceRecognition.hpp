@@ -1,15 +1,15 @@
 #ifndef VRECOG_H_INCLUDED
 #define VRECOG_H_INCLUDED
 
-#include <list>
-#include "userKeyElement.hpp"
+#include "json.hpp"
+using json = nlohmann::json;
 
 namespace voiceRecognition
 {
    
 	void startModule();
 
-	void setUserKeyList(std::list<userKeyElement> userKeyList);
+	void setUserKeyList(json userKeyList);
 
 	void stopModule();
 }

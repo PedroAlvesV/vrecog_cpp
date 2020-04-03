@@ -1,11 +1,8 @@
 #include <iostream>
-#include <iomanip> // setw only
 #include <atomic>
-#include <list>
 #include "mqtt/async_client.h"
 #include "json.hpp"
 #include "voiceRecognition.hpp"
-#include "userKeyElement.hpp"
 
 using namespace std;
 using json = nlohmann::json;
@@ -13,17 +10,21 @@ using json = nlohmann::json;
 const string SERVER_ADDRESS   { "tcp://broker.mqttdashboard.com:1883" };
 const string CLIENT_ID        { "listener-cpp" };
 const string TOPIC            { "topic/voice_recog" };
-const int  QOS = 1; 
+const int QOS = 1; 
 mqtt::async_client cli(SERVER_ADDRESS, CLIENT_ID);
-json keyList;
+json obj;
 
 namespace voiceRecognition
 {   
 
    atomic<bool> run = {false};
+   
+   void setUserKeyList(json userKeyList){
+      obj["userKeyList"] = userKeyList;
+   }
 
    void startModule(){
-      //cout << "startModule()" << endl;
+      
       run = true;
    
       mqtt::connect_options connOpts;
@@ -46,15 +47,17 @@ namespace voiceRecognition
             std::string user = msg->to_string().substr(0, pos),
                         cmd  = msg->to_string().substr(pos+1);
             
-            for (auto& element : keyList["userKeyList"]) {
+            for (auto& element : obj["userKeyList"]) {
                if (user.compare(element["user"]) == 0) {
                   for (auto& command : element["key"]){
                      if (cmd.compare(command) == 0) {
                         cout << "User '" << user << "' ";
                         cout << "invoked command '" << cmd << "'" << endl;
                         //notifyInteraction("voiceRecognition", user, cmd);
+                        break;
                      }
                   }
+                  break;
                }
             }
          }
@@ -66,35 +69,20 @@ namespace voiceRecognition
       
    }
 
-   void setUserKeyList(list<userKeyElement> userKeyList){
-      //cout << "setUserKeyList()" << endl;
-      keyList["userKeyList"] = {{}};
-      int i = 0;
-      for (auto item : userKeyList) {
-         keyList["userKeyList"][i] = {
-            {"user", item.user},
-            {"key", {}}
-         };
-         for(int j=0; j<item.total_keys; j++){
-            keyList["userKeyList"][i]["key"].push_back(item.key[j]);
-         }
-         i++;
-      }
-      cout << std::setw(4) << keyList << '\n';
-   }
-
    void stopModule(){
-      //cout << "stopModule()" << endl;
+      
       run = false;
       
       try {
-         cout << "Shutting down and disconnecting from the MQTT server..." << flush;
+         cout << "Shutting down and disconnecting from the MQTT server... " << flush;
          cli.unsubscribe(TOPIC)->wait();
          cli.stop_consuming();
          cli.disconnect()->wait();
          cout << "OK" << endl;
       }
       catch (const mqtt::exception& exc) {
+         cerr << exc.what() << endl;
       }
+      
    }
 }

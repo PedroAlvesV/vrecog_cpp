@@ -1,27 +1,30 @@
 #include <iostream>
+#include <iomanip> // for setw only
 #include <future>
 #include <list>
 
-#include "userKeyElement.hpp"
+#include "json.hpp"
 #include "voiceRecognition.hpp"
 
-#include <unistd.h>
+#include <unistd.h> // for usleep only
 
-int main(int argc, char* argv[]){
-   userKeyElement user1;
-   userKeyElement user2;
-   user1.user = "marina";
-   user1.add_key("stop");
-   user2.user = "fábio";
-   user2.add_key("stop");
-   user2.add_key("start");
-   std::list<userKeyElement> userKeyList;
-   userKeyList.push_back(user1);
-   userKeyList.push_back(user2);
+using json = nlohmann::json;
+
+int main(){
+   json userKeyList = {};
+   userKeyList.push_back({
+      {"user", "marina"},
+      {"key", {"stop"}}
+   });
+   userKeyList.push_back({
+      {"user", "fabio"},
+      {"key", {"stop", "start"}}
+   });
+   std::cout << std::setw(4) << userKeyList << '\n';
    /////////////////////////////////////////////
    voiceRecognition::setUserKeyList(userKeyList);
    std::future<void> _ = std::async(voiceRecognition::startModule);
-   usleep(20*1000000); // sleep for 20s
+   usleep(20*1000000); // to keep module running for 20s
    voiceRecognition::stopModule();
    return 0;
 }
