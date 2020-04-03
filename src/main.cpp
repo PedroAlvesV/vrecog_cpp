@@ -1,11 +1,9 @@
 #include <iostream>
 #include <iomanip> // for setw only
-#include <future>
+#include <unistd.h> // for usleep only
 
 #include "json.hpp"
 #include "voiceRecognition.hpp"
-
-#include <unistd.h> // for usleep only
 
 using json = nlohmann::json;
 
@@ -21,9 +19,10 @@ int main(){
    });
    std::cout << std::setw(4) << userKeyList << '\n';
    /////////////////////////////////////////////
-   voiceRecognition::setUserKeyList(userKeyList);
-   std::future<void> _ = std::async(voiceRecognition::startModule);
+   voiceRecognition vrecog;
+   vrecog.setUserKeyList(userKeyList);
+   vrecog.startModule();
    usleep(20*1000000); // to keep module running for 20s
-   voiceRecognition::stopModule();
+   vrecog.stopModule();
    return 0;
 }

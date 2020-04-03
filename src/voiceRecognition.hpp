@@ -4,14 +4,14 @@
 #include "json.hpp"
 using json = nlohmann::json;
 
-namespace voiceRecognition
-{
-   
-	void startModule();
-
-	void setUserKeyList(json userKeyList);
-
-	void stopModule();
-}
+class voiceRecognition {
+   private:
+      bool run;
+      void handler();
+   public:
+      void startModule();
+      void setUserKeyList(json);
+      void stopModule();
+};
 
 #endif
