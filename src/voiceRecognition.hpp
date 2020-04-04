@@ -9,6 +9,7 @@ class voiceRecognition {
       bool run;
       void handler();
    public:
+      json userKeyList;
       void startModule();
       void setUserKeyList(json);
       void stopModule();

@@ -11,7 +11,6 @@ const string CLIENT_ID        { "listener-cpp" };
 const string TOPIC            { "topic/voice_recog" };
 const int QOS = 1; 
 mqtt::async_client cli(SERVER_ADDRESS, CLIENT_ID);
-json obj;
 
 void voiceRecognition::handler(){
    while (this->run) {
@@ -22,7 +21,7 @@ void voiceRecognition::handler(){
       std::string user = msg->to_string().substr(0, pos),
                   cmd  = msg->to_string().substr(pos+1);
       
-      for (auto& element : obj["userKeyList"]) {
+      for (auto& element : this->userKeyList) {
          if (user.compare(element["user"]) == 0) {
             for (auto& command : element["key"]){
                if (cmd.compare(command) == 0) {
@@ -39,7 +38,7 @@ void voiceRecognition::handler(){
 }
 
 void voiceRecognition::setUserKeyList(json userKeyList){
-   obj["userKeyList"] = userKeyList;
+   this->userKeyList = userKeyList;
 }
 
 void voiceRecognition::startModule(){
